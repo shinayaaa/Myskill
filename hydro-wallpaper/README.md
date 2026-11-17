@@ -6,14 +6,15 @@
 比例、分辨率、延伸方式全部由调用时指定。纯确定性图像处理，不依赖 AI 生成，几秒出图。
 
 <p align="center">
-  <img src="assets/examples/extend.jpg" width="24%" alt="extend 取色延展">
-  <img src="assets/examples/blur.jpg" width="24%" alt="blur 模糊填充">
-  <img src="assets/examples/sunset.jpg" width="24%" alt="blur-mix 叠化">
-  <img src="assets/examples/splice.jpg" width="24%" alt="splice_blur 双图拼接">
+  <img src="assets/examples/extend.jpg" width="19%" alt="extend 取色延展">
+  <img src="assets/examples/blur.jpg" width="19%" alt="blur 模糊填充">
+  <img src="assets/examples/sunset.jpg" width="19%" alt="blur-mix 叠化">
+  <img src="assets/examples/splice.jpg" width="19%" alt="splice_blur 双图拼接">
+  <img src="assets/examples/subject.jpg" width="19%" alt="subject 抠图">
 </p>
 
 <p align="center">
-  <sub>从左到右：extend 取色延展 · blur 模糊填充 · blur-mix 叠化 · splice_blur 双图拼接</sub><br>
+  <sub>从左到右：extend 取色延展 · blur 模糊填充 · blur-mix 叠化 · splice_blur 双图拼接 · subject 抠图</sub><br>
   <sub>示例源图由 <code>assets/generate_demo_sources.py</code> 程序化生成，100% 原创，可自行复现</sub>
 </p>
 
@@ -51,16 +52,11 @@ python scripts/hydro_engine.py photo.png -o out.png --anchor 0.42 --blur-mix 0.5
 
 ## 安装
 
-只需要 Python 3.9+。本技能是 [Myskill](../) 仓库里的一个子目录：
+只需要 Python 3.9+。
 
 ```bash
-# 方式一：clone 整个技能集，用其中一个
-git clone https://github.com/shinayaaa/Myskill.git
-cd Myskill/hydro-wallpaper
-
-# 方式二：只要这一个（稀疏检出，不下载其他技能）
-git clone --depth 1 --filter=blob:none --sparse https://github.com/shinayaaa/Myskill.git
-cd Myskill && git sparse-checkout set hydro-wallpaper && cd hydro-wallpaper
+git clone https://github.com/YOUR_NAME/hydro-wallpaper.git
+cd hydro-wallpaper
 
 # 核心依赖（extend / blur / 裁切特写 / splice_blur 够用）
 pip install numpy pillow
@@ -78,6 +74,17 @@ pip install rembg onnxruntime
 > ```bash
 > python scripts/download_u2net.py
 > ```
+>
+> 已经用别的途径下好了？直接把 `u2net.onnx` 放到下面这个位置即可，
+> 不需要重下（rembg 会认这个路径）：
+>
+> | 平台 | 放这里 |
+> | --- | --- |
+> | Windows | `%USERPROFILE%\.rembg\models\u2net\u2net.onnx` |
+> | Linux / macOS | `~/.rembg/models/u2net/u2net.onnx` |
+>
+> 验证是否装好：`python -c "from rembg import new_session; new_session('u2net'); print('ok')"`
+> 能打印 `ok` 且**没有下载进度条**就是到位了。
 
 也可以一键建独立虚拟环境（不污染系统 Python）：
 
@@ -386,11 +393,9 @@ hydro-wallpaper/
 │   ├── src/                      # demo 源图
 │   └── examples/                 # README 效果图
 ├── setup_env.py             # 一键建独立虚拟环境
-├── SKILL.md                 # 给 AI Agent 用的技能描述
+├── LICENSE                  # MIT
 └── README.md
 ```
-
-本目录是 [Myskill](../) 仓库的一个技能，许可继承仓库根目录的 [MIT](../LICENSE)。
 
 ## 已知限制
 
@@ -409,4 +414,4 @@ hydro-wallpaper/
 
 ## License
 
-[MIT](../LICENSE)（继承 [Myskill](../) 仓库根目录的许可）
+[MIT](LICENSE)

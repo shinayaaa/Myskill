@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 make_examples.py — 用 assets/src 里的原创源图批量生成 README 用的示例图。
 
@@ -78,11 +78,24 @@ def examples(only=None):
                             "-o", OUT / "_t_splice.png",
                             "--width", W, "--height", H, "--focus-y", 0.30]))
 
+    # 5. subject —— 抠白底主体。需要 rembg + u2net 模型，缺了只跳过这一张。
+    jobs.append(("subject", [PY, ENGINE, SRC / "whale_white.jpg",
+                             "-o", OUT / "_t_subject.png",
+                             "--width", W, "--height", H, "--anchor", 0.42,
+                             "--mode", "subject", "--subject-model", "u2net"]))
+
     for name, cmd in jobs:
         if only and only != name:
             continue
         print(f"[{name}]")
-        run(cmd)
+        try:
+            run(cmd)
+        except SystemExit:
+            if name == "subject":
+                print("  ! subject 需要 rembg + u2net 模型，已跳过。"
+                      "装法见 README「安装」一节。", flush=True)
+                continue
+            raise
         shrink(OUT / f"_t_{name}.png", OUT / f"{name}.jpg")
         os.remove(OUT / f"_t_{name}.png")
 
