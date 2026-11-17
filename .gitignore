@@ -1,0 +1,17 @@
+# 忽略运行环境与产物
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# 生成物
+out/
+output/
+*.tmp
+_demo_*/
+
+# 系统垃圾
+.DS_Store
+Thumbs.db
+desktop.ini
