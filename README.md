@@ -11,16 +11,6 @@
 | --- | --- | --- | --- |
 | **hydro-wallpaper** | 把任意一张图做成「氢桌面」风格壁纸：上图 + 从图里长出来的延伸背景 | numpy + Pillow（抠图另需 rembg）| [`hydro-wallpaper/`](hydro-wallpaper/) |
 
-<p align="center">
-  <img src="hydro-wallpaper/assets/examples/extend.jpg" width="19%" alt="extend 取色延展">
-  <img src="hydro-wallpaper/assets/examples/blur.jpg" width="19%" alt="blur 模糊填充">
-  <img src="hydro-wallpaper/assets/examples/sunset.jpg" width="19%" alt="blur-mix 叠化">
-  <img src="hydro-wallpaper/assets/examples/splice.jpg" width="19%" alt="splice_blur 双图拼接">
-</p>
-
-<p align="center">
-  <sub>hydro-wallpaper 的四种输出：取色延展 · 模糊填充 · 叠化 · 双图拼接</sub>
-</p>
 
 ## 目录约定
 
